@@ -1,10 +1,10 @@
-import { Container } from "./styles";
-import { memo } from "react";
-import { IconButton } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import { Container } from './styles';
+import { memo } from 'react';
+import { IconButton } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
-function Produto({ nome, foto, id, valor, unidade }) {
+function Produto({ nome, foto, id, valor, unidade }: any) {
   return (
     <Container>
       <div>
@@ -14,7 +14,7 @@ function Produto({ nome, foto, id, valor, unidade }) {
         </p>
       </div>
       <div>
-        <IconButton color="secondary">
+        <IconButton color='secondary'>
           <RemoveIcon />
         </IconButton>
         <IconButton>

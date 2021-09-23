@@ -1,15 +1,15 @@
-import { Button } from "@material-ui/core";
-import { Container, Titulo, InputContainer } from "./styles";
-import { Input, InputLabel, InputAdornment } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
-import { UserContext } from "../../common/contexts/User";
+import { Button } from '@material-ui/core';
+import { Container, Titulo, InputContainer } from './styles';
+import { Input, InputLabel, InputAdornment } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../common/contexts/User';
 
-function Login({ name, setName, balance, setBalance }) {
+function Login({ name, setName, balance, setBalance }: any) {
   const history = useHistory();
   return (
     <Container>
       <UserContext.Consumer>
-        {({ name, setBalance, setName, balance }) => (
+        {({ name, setBalance, setName, balance }: any) => (
           <>
             <Titulo>Insira o seu nome</Titulo>
             <InputContainer>
@@ -17,27 +17,27 @@ function Login({ name, setName, balance, setBalance }) {
               <Input
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                type="text"
+                type='text'
               />
             </InputContainer>
             <InputContainer>
               <InputLabel>Saldo</InputLabel>
               <Input
-                type="number"
+                type='number'
                 value={balance}
                 onChange={(event) => setBalance(event.target.value)}
                 startAdornment={
-                  <InputAdornment position="start">R$</InputAdornment>
+                  <InputAdornment position='start'>R$</InputAdornment>
                 }
               />
             </InputContainer>
             <Button
-              variant="contained"
-              color="primary"
-              onClick={() => history.push("/fair")}
+              variant='contained'
+              color='primary'
+              onClick={() => history.push('/fair')}
             >
               Avançar
-            </Button>{" "}
+            </Button>{' '}
           </>
         )}
       </UserContext.Consumer>

@@ -1,8 +1,8 @@
 import { Container, Header, Lista } from './styles';
-import feira from './feira.json';
+import feira from './fair.json';
 import NavBar from './NavBar';
 import React from 'react';
-import Produto from '../../components/Produto';
+import Produto from '../../components/Produt';
 
 function Feira() {
   return (
