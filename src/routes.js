@@ -1,20 +1,18 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Fair from './pages/Fair/index';
-import React, { useState } from 'react';
-import { UserContext } from './common/contexts/User';
+import React from 'react';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import UserProvider from './common/contexts/UserProvider';
 
 function Router() {
-  const [name, setName] = useState('');
-  const [balance, setBalance] = useState(0);
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          <UserContext.Provider value={{ name, setName, balance, setBalance }}>
+          <UserProvider>
             <Login />
-          </UserContext.Provider>
+          </UserProvider>
         </Route>
         <Route exact path='/fair'>
           <Fair />
