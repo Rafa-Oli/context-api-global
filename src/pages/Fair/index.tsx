@@ -2,7 +2,7 @@ import { Container, Header, Lista } from './styles';
 import feira from './fair.json';
 import NavBar from './NavBar';
 import React, { useContext } from 'react';
-import Produto from '../../components/Produt';
+import Product from '../../components/Product';
 import { UserContext } from 'common/contexts/User';
 
 function Feira() {
@@ -20,7 +20,7 @@ function Feira() {
       <Lista>
         <h2>Produtos:</h2>
         {feira.map((produto) => (
-          <Produto unidade={undefined} {...produto} key={produto.id} />
+          <Product unidade={undefined} {...produto} key={produto.id} />
         ))}
       </Lista>
     </Container>

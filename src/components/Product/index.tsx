@@ -2,8 +2,11 @@ import { Container } from './styles';
 import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { useContext } from 'react';
+import { CartContext } from 'common/contexts/Cart';
 
-function Produto({ nome, foto, id, valor, unidade }: any) {
+function Product({ nome, foto, id, valor, unidade }: any) {
+  const { cart, setCart } = useContext(CartContext);
   return (
     <Container>
       <div>
@@ -24,4 +27,4 @@ function Produto({ nome, foto, id, valor, unidade }: any) {
   );
 }
 
-export default Produto;
+export default Product;

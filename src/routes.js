@@ -4,6 +4,7 @@ import React from 'react';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import UserProvider from './common/contexts/UserProvider';
+import { CartProvider } from './common/contexts/CartProvider';
 
 function Router() {
   return (
@@ -13,9 +14,11 @@ function Router() {
           <Route exact path='/'>
             <Login />
           </Route>
-          <Route exact path='/fair'>
-            <Fair />
-          </Route>
+          <CartProvider>
+            <Route exact path='/fair'>
+              <Fair />
+            </Route>
+          </CartProvider>
           <Route exact path='/cart'>
             <Cart />
           </Route>
