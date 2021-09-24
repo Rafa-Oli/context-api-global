@@ -8,19 +8,19 @@ import UserProvider from './common/contexts/UserProvider';
 function Router() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/'>
-          <UserProvider>
+      <UserProvider>
+        <Switch>
+          <Route exact path='/'>
             <Login />
-          </UserProvider>
-        </Route>
-        <Route exact path='/fair'>
-          <Fair />
-        </Route>
-        <Route exact path='/cart'>
-          <Cart />
-        </Route>
-      </Switch>
+          </Route>
+          <Route exact path='/fair'>
+            <Fair />
+          </Route>
+          <Route exact path='/cart'>
+            <Cart />
+          </Route>
+        </Switch>
+      </UserProvider>
     </BrowserRouter>
   );
 }

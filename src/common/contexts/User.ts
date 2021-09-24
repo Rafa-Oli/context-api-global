@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 interface userContextProps {
   name: string;
@@ -8,3 +8,5 @@ interface userContextProps {
 }
 
 export const UserContext = createContext({} as userContextProps);
+
+UserContext.displayName = 'User';
