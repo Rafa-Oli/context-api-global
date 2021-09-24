@@ -5,21 +5,44 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { useContext } from 'react';
 import { CartContext } from 'common/contexts/Cart';
 
-function Product({ nome, foto, id, valor, unidade }: any) {
+interface Product {
+  name: string;
+  photo: string;
+  quantidade?: number;
+  value: number;
+  id: number;
+  unidade?: number;
+}
+
+function Product({ name, photo, id, value, unidade }: Product) {
   const { cart, setCart } = useContext(CartContext);
+
+  function addProduct(newProduct: Product) {
+    const hasProduct = cart.some((itemCart) => itemCart.id === newProduct.id);
+    if (!hasProduct) {
+      newProduct.quantidade = 1;
+      return setCart([...cart, newProduct]);
+    }
+    setCart(
+      cart.map((item: any) => {
+        if (item.id === newProduct.id) item.quantidade += 1;
+        return item;
+      })
+    );
+  }
   return (
     <Container>
       <div>
-        <img src={`/assets/${foto}.png`} alt={`foto de ${nome}`} />
+        <img src={`/assets/${photo}.png`} alt={`foto de ${name}`} />
         <p>
-          {nome} - R$ {valor?.toFixed(2)} <span>Kg</span>
+          {name} - R$ {value?.toFixed(2)} <span>Kg</span>
         </p>
       </div>
       <div>
         <IconButton color='secondary'>
           <RemoveIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => addProduct({ name, photo, id, value })}>
           <AddIcon />
         </IconButton>
       </div>

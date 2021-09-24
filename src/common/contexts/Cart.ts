@@ -2,7 +2,7 @@ import { createContext, SetStateAction } from 'react';
 
 interface cartContextProps {
   cart: any[];
-  setCart: React.Dispatch<SetStateAction<never[]>>;
+  setCart: React.Dispatch<SetStateAction<any[]>>;
 }
 
 export const CartContext = createContext({} as cartContextProps);
