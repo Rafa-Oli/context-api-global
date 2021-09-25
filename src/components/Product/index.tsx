@@ -6,7 +6,7 @@ import { IProduct } from './product';
 import { UserCartContext } from 'common/contexts/CartProvider';
 
 function Product({ name, photo, id, value, unidade }: IProduct) {
-  const { cart, addProduct } = UserCartContext();
+  const { cart, addProduct, removeProduct } = UserCartContext();
   const productInCart = cart.find((item) => item.id === id);
 
   return (
@@ -18,11 +18,14 @@ function Product({ name, photo, id, value, unidade }: IProduct) {
         </p>
       </div>
       <div>
-        <IconButton color='secondary'>
+        <IconButton color='secondary' onClick={() => removeProduct(id)}>
           <RemoveIcon />
         </IconButton>
         {productInCart?.quantidade || 0}
-        <IconButton onClick={() => addProduct({ name, photo, id, value })}>
+        <IconButton
+          color='primary'
+          onClick={() => addProduct({ name, photo, id, value })}
+        >
           <AddIcon />
         </IconButton>
       </div>
