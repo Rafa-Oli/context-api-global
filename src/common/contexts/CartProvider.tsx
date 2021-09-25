@@ -36,10 +36,10 @@ export const UseCartContext = () => {
 
   function removeProduct(id: string) {
     const product = cart.find((itemCart) => itemCart.id === id);
-    const productSingle = product.quantidade === 1;
-
+    const productSingle = product.quantity === 1;
     if (productSingle) {
       const newCart = cart.filter((item) => item.id !== id);
+      console.log('aqui dentro', newCart);
       return setCart(newCart);
     }
     setCart(changeQuantity(id, -1));

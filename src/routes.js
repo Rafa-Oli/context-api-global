@@ -18,10 +18,10 @@ function Router() {
             <Route exact path='/fair'>
               <Fair />
             </Route>
+            <Route exact path='/cart'>
+              <Cart />
+            </Route>
           </CartProvider>
-          <Route exact path='/cart'>
-            <Cart />
-          </Route>
         </Switch>
       </UserProvider>
     </BrowserRouter>
