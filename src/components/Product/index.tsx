@@ -3,10 +3,10 @@ import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { IProduct } from './product';
-import { UserCartContext } from 'common/contexts/CartProvider';
+import { UseCartContext } from 'common/contexts/CartProvider';
 
-function Product({ name, photo, id, value, unidade }: IProduct) {
-  const { cart, addProduct, removeProduct } = UserCartContext();
+function Product({ name, photo, id, value, unity }: IProduct) {
+  const { cart, addProduct, removeProduct } = UseCartContext();
   const productInCart = cart.find((item) => item.id === id);
 
   return (
@@ -18,10 +18,14 @@ function Product({ name, photo, id, value, unidade }: IProduct) {
         </p>
       </div>
       <div>
-        <IconButton color='secondary' onClick={() => removeProduct(id)}>
+        <IconButton
+          color='secondary'
+          onClick={() => removeProduct(id)}
+          disabled={!productInCart}
+        >
           <RemoveIcon />
         </IconButton>
-        {productInCart?.quantidade || 0}
+        {productInCart?.quantity || 0}
         <IconButton
           color='primary'
           onClick={() => addProduct({ name, photo, id, value })}

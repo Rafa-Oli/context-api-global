@@ -1,8 +1,8 @@
 export interface IProduct {
   name: string;
   photo: string;
-  quantidade?: number;
+  quantity?: number;
   value: number;
   id: string;
-  unidade?: number;
+  unity?: number;
 }

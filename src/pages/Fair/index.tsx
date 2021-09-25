@@ -20,7 +20,7 @@ function Feira() {
       <Lista>
         <h2>Produtos:</h2>
         {feira.map((produto) => (
-          <Product unidade={undefined} {...produto} key={produto.id} />
+          <Product unity={undefined} {...produto} key={produto.id} />
         ))}
       </Lista>
     </Container>
