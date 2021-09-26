@@ -39,7 +39,6 @@ export const UseCartContext = () => {
     const productSingle = product.quantity === 1;
     if (productSingle) {
       const newCart = cart.filter((item) => item.id !== id);
-      console.log('aqui dentro', newCart);
       return setCart(newCart);
     }
     setCart(changeQuantity(id, -1));
