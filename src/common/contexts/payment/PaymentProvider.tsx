@@ -1,5 +1,5 @@
-import { PaymentContext } from './Payment';
-import { useState } from 'react';
+import { PaymentContext, TypePayment } from './Payment';
+import { useContext, useState } from 'react';
 
 export const PaymentProvider = ({ children }: any) => {
   const typesPayments = [
@@ -18,4 +18,21 @@ export const PaymentProvider = ({ children }: any) => {
       {children}
     </PaymentContext.Provider>
   );
+};
+
+export const usePaymentContext = () => {
+  const { typesPayments, paymentMethod, setPaymentMethod } =
+    useContext(PaymentContext);
+
+  function changeMethodPayment(id: number) {
+    const paymentActual = typesPayments.find((payment) => payment.id === id);
+
+    setPaymentMethod(paymentActual as TypePayment);
+  }
+
+  return {
+    typesPayments,
+    paymentMethod,
+    changeMethodPayment,
+  };
 };

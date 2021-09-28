@@ -15,14 +15,15 @@ import { useHistory } from 'react-router-dom';
 import { IProduct } from 'components/Product/product';
 import { UseCartContext } from 'common/contexts/cart/CartProvider';
 import { PaymentContext } from '../../common/contexts/payment/Payment';
+import { usePaymentContext } from 'common/contexts/payment/PaymentProvider';
 
 function Cart() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const { cart } = UseCartContext();
   const history = useHistory();
 
-  const { paymentMethod, typesPayments, setPaymentMethod } =
-    useContext(PaymentContext);
+  const { paymentMethod, typesPayments, changeMethodPayment } =
+    usePaymentContext();
 
   return (
     <Container>
@@ -39,7 +40,7 @@ function Cart() {
         <InputLabel> Forma de Pagamento </InputLabel>
         <Select
           value={paymentMethod.id}
-          onChange={(event: any) => setPaymentMethod(event.target.value)}
+          onChange={(event: any) => changeMethodPayment(event.target.value)}
         >
           {typesPayments.map((payment) => (
             <MenuItem value={payment.id} key={payment.id}>

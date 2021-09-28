@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-interface TypePayment {
+export interface TypePayment {
   name: string;
   juros: number;
   id: number;
