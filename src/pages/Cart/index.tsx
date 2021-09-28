@@ -1,4 +1,10 @@
-import { Button, Snackbar, InputLabel } from '@material-ui/core';
+import {
+  Button,
+  Snackbar,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import MuiAlert from '@material-ui/lab/Alert';
 import Product from 'components/Product';
@@ -15,7 +21,8 @@ function Cart() {
   const { cart } = UseCartContext();
   const history = useHistory();
 
-  const { paymentMethod } = useContext(PaymentContext);
+  const { paymentMethod, typesPayments, setPaymentMethod } =
+    useContext(PaymentContext);
 
   return (
     <Container>
@@ -24,13 +31,22 @@ function Cart() {
           <ArrowBack />
         </IconButton>
       </div>
-      {paymentMethod.name}
       <h2>Carrinho</h2>
       {cart.map((product: IProduct) => (
         <Product {...product} key={product.id} />
       ))}
       <PagamentoContainer>
         <InputLabel> Forma de Pagamento </InputLabel>
+        <Select
+          value={paymentMethod.id}
+          onChange={(event: any) => setPaymentMethod(event.target.value)}
+        >
+          {typesPayments.map((payment) => (
+            <MenuItem value={payment.id} key={payment.id}>
+              {payment.name}
+            </MenuItem>
+          ))}
+        </Select>
       </PagamentoContainer>
       <TotalContainer>
         <div>
