@@ -3,8 +3,8 @@ import { Nav } from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import { UseCartContext } from 'common/contexts/CartProvider';
 import { useHistory } from 'react-router-dom';
+import { UseCartContext } from 'common/contexts/cart/CartProvider';
 
 export default function NavBar() {
   const { quantityProducts } = UseCartContext();

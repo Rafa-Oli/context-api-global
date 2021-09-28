@@ -3,7 +3,7 @@ import feira from './fair.json';
 import NavBar from './NavBar';
 import React, { useContext } from 'react';
 import Product from '../../components/Product';
-import { UserContext } from 'common/contexts/User';
+import { UserContext } from 'common/contexts/user/User';
 
 function Feira() {
   const { name, balance } = useContext(UserContext);

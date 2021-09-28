@@ -22,7 +22,7 @@ export const Container = styled.main`
 `;
 
 // export const Voltar = styled(IconButton).attrs({
-//   children: <ArrowBack />
+//   children: <ArrowBack />,
 // })`
 //   left: 20px;
 //   position: absolute;

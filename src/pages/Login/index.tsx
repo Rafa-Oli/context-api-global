@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core';
 import { Container, Titulo, InputContainer } from './styles';
 import { Input, InputLabel, InputAdornment } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../../common/contexts/User';
+import { UserContext } from '../../common/contexts/user/User';
 import { useContext } from 'react';
 
 function Login() {
