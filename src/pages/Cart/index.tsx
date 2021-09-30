@@ -19,7 +19,7 @@ import { UserContext } from 'common/contexts/user/User';
 
 function Cart() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const { cart, valueTotalCart } = UseCartContext();
+  const { cart, valueTotalCart, makePurchase } = UseCartContext();
   const { balance = 0 } = useContext(UserContext);
   const history = useHistory();
   const total = useMemo(
@@ -70,11 +70,12 @@ function Cart() {
       </TotalContainer>
       <Button
         onClick={() => {
+          makePurchase();
           setOpenSnackbar(true);
         }}
         color='primary'
         variant='contained'
-        disabled={total < 0}
+        disabled={total < 0 || cart.length === 0}
       >
         Comprar
       </Button>

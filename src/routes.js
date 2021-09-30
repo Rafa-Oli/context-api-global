@@ -16,10 +16,10 @@ function Router() {
             <Login />
           </Route>
           <CartProvider>
-            <Route exact path='/fair'>
-              <Fair />
-            </Route>
             <PaymentProvider>
+              <Route exact path='/fair'>
+                <Fair />
+              </Route>
               <Route exact path='/cart'>
                 <Cart />
               </Route>

@@ -1,5 +1,7 @@
 import { IProduct } from 'components/Product/product';
 import { useContext, useEffect, useState } from 'react';
+import { usePaymentContext } from '../payment/PaymentProvider';
+import { UserContext } from '../user/User';
 import { CartContext } from './Cart';
 
 export const CartProvider = ({ children }: any) => {
@@ -32,6 +34,9 @@ export const UseCartContext = () => {
     setValueTotalCart,
   } = useContext(CartContext);
 
+  const { paymentMethod } = usePaymentContext();
+  const { setBalance } = useContext(UserContext);
+
   function changeQuantity(id: string, quantity: number) {
     return cart.map((item: IProduct) => {
       if (item.id === id) (item.quantity as number) += quantity;
@@ -58,6 +63,11 @@ export const UseCartContext = () => {
     setCart(changeQuantity(id, -1));
   }
 
+  function makePurchase() {
+    setCart([]);
+    setBalance((balanceActual) => balanceActual - valueTotalCart);
+  }
+
   useEffect(() => {
     const { newQuantity, newTotal } = cart.reduce(
       (cont, product) => ({
@@ -70,8 +80,8 @@ export const UseCartContext = () => {
       }
     );
     setQuantityProducts(newQuantity);
-    setValueTotalCart(newTotal);
-  }, [cart, setQuantityProducts, setValueTotalCart]);
+    setValueTotalCart(newTotal * paymentMethod.juros);
+  }, [cart, paymentMethod.juros, setQuantityProducts, setValueTotalCart]);
 
   return {
     cart,
@@ -80,5 +90,6 @@ export const UseCartContext = () => {
     removeProduct,
     quantityProducts,
     valueTotalCart,
+    makePurchase,
   };
 };
