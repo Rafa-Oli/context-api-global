@@ -8,18 +8,24 @@ import {
 import { ArrowBack } from '@material-ui/icons';
 import MuiAlert from '@material-ui/lab/Alert';
 import Product from 'components/Product';
-import { useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { Container, TotalContainer, PagamentoContainer } from './styles';
 import { IconButton } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { IProduct } from 'components/Product/product';
 import { UseCartContext } from 'common/contexts/cart/CartProvider';
 import { usePaymentContext } from 'common/contexts/payment/PaymentProvider';
+import { UserContext } from 'common/contexts/user/User';
 
 function Cart() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const { cart, valueTotalCart } = UseCartContext();
+  const { balance = 0 } = useContext(UserContext);
   const history = useHistory();
+  const total = useMemo(
+    () => balance - valueTotalCart,
+    [balance, valueTotalCart]
+  );
 
   const { paymentMethod, typesPayments, changeMethodPayment } =
     usePaymentContext();
@@ -55,11 +61,11 @@ function Cart() {
         </div>
         <div>
           <h2> Saldo: </h2>
-          <span> R$ </span>
+          <span> R$ {Number(balance).toFixed(2)}</span>
         </div>
         <div>
           <h2> Saldo Total: </h2>
-          <span> R$ </span>
+          <span> R$ {total.toFixed(2)}</span>
         </div>
       </TotalContainer>
       <Button
@@ -68,6 +74,7 @@ function Cart() {
         }}
         color='primary'
         variant='contained'
+        disabled={total < 0}
       >
         Comprar
       </Button>
